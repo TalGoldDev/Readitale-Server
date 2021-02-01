@@ -7,18 +7,24 @@ const fetchTopRedditLinks = async function () {
 
   let postLinksArray = [];
   for (let i = 0; i < postsArray.length; i++) {
-    postLinksArray.push(postsArray[i].data.url);
+    postLinksArray.push(postsArray[i].data.url + ".json");
   }
 
   return postLinksArray;
 };
 
 const fetchRedditPostData = async function (link) {
-  const response = await axios.get(link);
-  const postData = response.data[0].data.children;
-  const writingPromptsData = response.data[1].data.children;
-  let data = getData(postData, writingPromptsData);
+  try {
+    const response = await axios.get(link);
+    const postData = response.data[0].data.children;
+    const writingPromptsData = response.data[1].data.children;
 
+    let data = getData(postData, writingPromptsData);
+    return data;
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
   function getData(postData, prompData) {
     let postIndex = 0;
     let promptIndex = 0;
@@ -31,10 +37,9 @@ const fetchRedditPostData = async function (link) {
     }
     let score = prompData[promptIndex].data.score;
     let story = prompData[promptIndex].data.body;
+
     return [author, score, summary, story];
   }
-
-  return data;
 };
 
 export { fetchTopRedditLinks as fetchTopRedditLinks };

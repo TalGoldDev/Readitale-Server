@@ -1,14 +1,16 @@
-import { fetchRedditPostData, fetchTopRedditLinks } from "../api/requests";
+import { fetchRedditPostData, fetchTopRedditLinks } from "../api/requests.js";
 
-function fetchStories(req, res) {
-  let arrayPosts = fetchTopRedditLinks();
+const fetchStories = async function (req, res) {
+  let arrayPosts = await fetchTopRedditLinks();
 
-  arrayPosts.array.forEach((element) => {
-    let postData = fetchRedditPostData(element);
+  console.log(arrayPosts);
+  arrayPosts.forEach(async (element) => {
+    let postData = await fetchRedditPostData(element);
+    console.log(postData);
   });
 
-  req.send();
-}
+  res.send();
+};
 function accessControlAllowOrigin(req, res, next) {
   // Website you wish to allow to connect
   res.setHeader("Access-Control-Allow-Origin", "*");

@@ -1,16 +1,12 @@
 import express from "express";
-import { accessControlAllowOrigin } from "./middleware/index.js";
-import { fetchTopRedditPostLinks } from "./api/requests.js";
+import { accessControlAllowOrigin, fetchStories } from "./middleware/index.js";
 
 const app = express();
 
 app.use(accessControlAllowOrigin);
 app.use(express.json());
 
-app.get("/generate", (req, res) => {
-  fetchTopRedditPostLinks();
-  res.send("hello world");
-});
+app.get("/generate", fetchStories);
 
 const helloWorld = function () {
   console.log("helloworld");
