@@ -14,6 +14,8 @@ mongoose
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log(err));
 
+console.log(`/api/fetchStories&pass=${process.env.ADMIN_PASSWORD}`);
+
 const app = express();
 app.use(accessControlAllowOrigin);
 app.use(express.json());
