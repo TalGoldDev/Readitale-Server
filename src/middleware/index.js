@@ -1,4 +1,12 @@
+import { fetchRedditPostData, fetchTopRedditLinks } from "../api/requests";
+
 function fetchStories(req, res) {
+  let arrayPosts = fetchTopRedditLinks();
+
+  arrayPosts.array.forEach((element) => {
+    let postData = fetchRedditPostData(element);
+  });
+
   req.send();
 }
 function accessControlAllowOrigin(req, res, next) {

@@ -1,6 +1,6 @@
 import express from "express";
 import { accessControlAllowOrigin } from "./middleware/index.js";
-import { fetchTopRedditPostLinks } from "./api/index.js";
+import { fetchTopRedditPostLinks } from "./api/requests.js";
 
 const app = express();
 
