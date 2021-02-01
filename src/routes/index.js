@@ -1,9 +1,11 @@
 import express from "express";
-import { fetchStories } from "../middleware/index.js";
+import { fetchStories, getStories } from "../middleware/index.js";
 
 const router = express.Router();
 
-router.get("/api/generate", fetchStories);
+router.get("/api/fetchStories", fetchStories);
+
+router.get("/api/get/stories", getStories);
 
 router.get("/", (req, res) => {
   console.log("hello world");

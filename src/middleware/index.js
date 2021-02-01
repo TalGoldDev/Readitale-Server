@@ -12,6 +12,13 @@ const fetchStories = async function (req, res) {
 
   res.send("new stories saved to the database");
 };
+
+const getStories = async function (req, res) {
+  Post.find({}, function (err, data) {
+    res.send(data);
+  });
+};
+
 function accessControlAllowOrigin(req, res, next) {
   // Website you wish to allow to connect
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -38,3 +45,4 @@ function accessControlAllowOrigin(req, res, next) {
 
 export { accessControlAllowOrigin as accessControlAllowOrigin };
 export { fetchStories as fetchStories };
+export { getStories as getStories };
