@@ -7,14 +7,12 @@ import { router } from "./routes/index.js";
 dotenv.config();
 
 mongoose
-  .connect(process.env.MONGO_URI, {
+  .connect(process.env.MONGO_CLOUD, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log(err));
-
-console.log(`/api/fetchStories&pass=${process.env.ADMIN_PASSWORD}`);
 
 const app = express();
 app.use(accessControlAllowOrigin);
