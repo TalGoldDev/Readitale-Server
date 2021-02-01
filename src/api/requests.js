@@ -38,7 +38,7 @@ const fetchRedditPostData = async function (link) {
     let score = prompData[promptIndex].data.score;
     let story = prompData[promptIndex].data.body;
 
-    return [author, score, summary, story];
+    return { author, score, summary, story };
   }
 };
 

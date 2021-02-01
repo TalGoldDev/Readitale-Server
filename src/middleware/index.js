@@ -1,15 +1,16 @@
 import { fetchRedditPostData, fetchTopRedditLinks } from "../api/requests.js";
+import { Post } from "../model/post.js";
 
 const fetchStories = async function (req, res) {
   let arrayPosts = await fetchTopRedditLinks();
 
-  console.log(arrayPosts);
   arrayPosts.forEach(async (element) => {
     let postData = await fetchRedditPostData(element);
-    console.log(postData);
+    let newPostItem = await new Post(postData);
+    newPostItem.save();
   });
 
-  res.send();
+  res.send("new stories saved to the database");
 };
 function accessControlAllowOrigin(req, res, next) {
   // Website you wish to allow to connect

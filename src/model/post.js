@@ -1,6 +1,8 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
 
-const PostSchema = mongoose.Schema({
+const Schema = mongoose.Schema;
+
+const PostSchema = new mongoose.Schema({
   summary: {
     type: String,
     required: true,
@@ -14,9 +16,11 @@ const PostSchema = mongoose.Schema({
     required: true,
   },
   author: {
-    type: Schema.Types.ObjectId,
-    ref: "Author",
+    type: String,
+    required: true,
   },
 });
 
-module.exports = mongoose.model("Post", PostSchema);
+const Post = mongoose.model("Post", PostSchema);
+
+export { Post as Post };
