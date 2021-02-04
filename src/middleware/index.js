@@ -39,6 +39,14 @@ const getStories = async function (req, res) {
   });
 };
 
+const getStoryById = async function (req, res) {
+  let postId = req.body.params.id;
+  Post.findOne({ _id: postId }, function (err, data) {
+    res.send(data);
+    return;
+  });
+};
+
 function accessControlAllowOrigin(req, res, next) {
   // Website you wish to allow to connect
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -67,3 +75,4 @@ export { accessControlAllowOrigin as accessControlAllowOrigin };
 export { fetchStories as fetchStories };
 export { getStories as getStories };
 export { authentication as authentication };
+export { getStoryById as getStoryById };
